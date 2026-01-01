@@ -1,23 +1,22 @@
-# hello_wx.py
-import PySimpleGUI as sg
+from tkinter import *
+from PIL import Image, ImageDraw
+from tkinter import messagebox
+
 import clear
 
-layout = [[sg.Text("Press the button below to clear temp files from Windows")], [sg.Button("Clear Temp Files")]]
+def execute_clear_temp_files():
+    try:
+        clear.clear_temp_files()
+    except Exception as e:
+        messagebox.showerror("Erro!", f"Ocorreu um erro: {e}")
 
-# sg.Window(title="Clear Temp Files", layout=[[]], margins=(100, 50)).read()
-window = sg.Window("Clear Temp Files", layout, margins=(100, 50))
 
-while True:
-    event, values = window.read()
-    # End program if user closes window or
-    # presses the OK button
-    if event == sg.WIN_CLOSED:
-        break
-    if event == "Clear Temp Files":
-        try:
-            clear.clear_temp_files()
-            sg.Popup("Done!", keep_on_top=True)
-        except NotImplemented:
-            sg.Popup("Erro!", keep_on_top=True)
+window = Tk()
+window.title("Clear Temp Files")
+window.config(padx=10, pady=100)
 
-window.close()
+# Button
+add_button = Button(text="Clear Temp Files", width=36, command=execute_clear_temp_files)
+add_button.grid(row=4, column=1, columnspan=2)
+
+window.mainloop()

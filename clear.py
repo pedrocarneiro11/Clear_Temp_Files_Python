@@ -1,6 +1,7 @@
 import os
 import shutil
 import getpass
+from tkinter import messagebox
 
 
 def clear_temp_files():
@@ -11,5 +12,7 @@ def clear_temp_files():
 
     shutil.rmtree(del_dir1, ignore_errors=True)
     shutil.rmtree(del_dir2, ignore_errors=True)
+
+    messagebox.showinfo("Concluído!", "Arquivos temporários foram removidos com sucesso!")
 
 
